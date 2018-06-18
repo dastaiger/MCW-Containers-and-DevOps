@@ -324,7 +324,7 @@ In this task, you will update the packages and install Docker engine.
 
 9.  Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
     ```
-    sudo usermod -aG docker \$USER
+    sudo usermod -aG docker $USER
     ```
 
     ![In this screenshot of a Command Prompt window, sudo usermod -aG docker \$USER has been typed and run at the command prompt. Errors appear in the window.](images/Setup/image29.png)
