@@ -232,7 +232,7 @@ In this task, you will configure the web container to communicate with the API c
 5.  Create and start the image passing the correct URI to the API container as an environment variable, then check the port that the container is running on.
 
     ```
-    docker run --d --P --name web --net fabmedical --e CONTENT_API_URL=http://api:3001 content-web
+    docker run --d --P --name web --net fabmedical -e CONTENT_API_URL=http://api:3001 content-web
     ```
 6.  Curl the speakers path again, using the port assigned to the web container.
 
