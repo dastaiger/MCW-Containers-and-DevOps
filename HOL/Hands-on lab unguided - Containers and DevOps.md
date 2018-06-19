@@ -208,9 +208,9 @@ The web application container will be calling endpoints exposed by the API appli
 2.  Start the API and web containers with these commands:
 
     ```
-    docker run --d --p 3001:3001 --name api --net fabmedical content-api
+    docker run -d -p 3001:3001 --name api --net fabmedical content-api
 
-    docker run --d --P --name web --net fabmedical content-web
+    docker run -d -P --name web --net fabmedical content-web
     ```
 
 3.  Test the API application by curling the speakers URL once again.
@@ -232,7 +232,7 @@ In this task, you will configure the web container to communicate with the API c
 5.  Create and start the image passing the correct URI to the API container as an environment variable, then check the port that the container is running on.
 
     ```
-    docker run --d --P --name web --net fabmedical --e CONTENT_API_URL=http://api:3001 content-web
+    docker run -d -P --name web --net fabmedical --e CONTENT_API_URL=http://api:3001 content-web
     ```
 6.  Curl the speakers path again, using the port assigned to the web container.
 
