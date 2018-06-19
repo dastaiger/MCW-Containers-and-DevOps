@@ -297,6 +297,7 @@ In this task, you will update the packages and install Docker engine.
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     ```
 5.  Update the Ubuntu packages and install Docker engine, node.js and the node package manager in a single step by typing the following in a single line command. When asked if you would like to proceed, respond by typing "y" and pressing enter.
+If you use Ubunut 18.04 LTS you might need to use docker-io instead of docker-ce as there is no CE package available yet.
 
     ```
     sudo apt-get update && sudo apt install docker-ce nodejs npm
