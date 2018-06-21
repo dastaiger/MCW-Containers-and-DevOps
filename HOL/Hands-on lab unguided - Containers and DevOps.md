@@ -339,75 +339,75 @@ In this task, you will make HTTP requests using kubectl. These requests will dep
     apiVersion: extensions/v1beta1
     kind: Deployment
     metadata:
-    labels:
-        app: web
-    name: web
+      labels:
+        k8s-app: web
+      name: web
     spec:
-    replicas: 1
-    selector:
+      replicas: 1
+      selector:
         matchLabels:
-        app: web
-    strategy:
+          k8s-app: web
+      strategy:
         rollingUpdate:
-        maxSurge: 1
-        maxUnavailable: 1
+          maxSurge: 1
+          maxUnavailable: 1
         type: RollingUpdate
-    template:
+      template:
         metadata:
-        labels:
-            app: web
-        name: web
+          labels:
+            k8s-app: web
+          name: web
         spec:
-        containers:
-        - image: [LOGINSERVER].azurecr.io/fabmedical/content-web
+          containers:
+          - image: [LOGINSERVER].azurecr.io/fabmedical/web:v1
+            name: web
             env:
             - name: CONTENT_API_URL
-            value: http://api:3001
+              value: http://api:3001
             livenessProbe:
-            httpGet:
+              httpGet:
                 path: /
                 port: 80
-            initialDelaySeconds: 30
-            periodSeconds: 20
-            timeoutSeconds: 10
-            failureThreshold: 3
+              initialDelaySeconds: 30
+              periodSeconds: 20
+              timeoutSeconds: 10
+              failureThreshold: 3
             imagePullPolicy: Always
             name: web
             ports:
             - containerPort: 80
-            hostPort: 80
-            protocol: TCP
+              hostPort: 80
+              protocol: TCP
             resources:
-            requests:
+              requests:
                 cpu: 1000m
                 memory: 128Mi
             securityContext:
-            privileged: false
+              privileged: false
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
-        dnsPolicy: ClusterFirst
-        restartPolicy: Always
-        schedulerName: default-scheduler
-        securityContext: {}
-        terminationGracePeriodSeconds: 30
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
     ---
     apiVersion: v1
     kind: Service
     metadata:
-    labels:
+      labels:
         app: web
-    name: web
+      name: web
     spec:
-    ports:
-    - name: web-traffic
+      ports:
+      - name: web-traffic
         port: 80
         protocol: TCP
         targetPort: 3000
-    selector:
+      selector:
         app: web
-    sessionAffinity: None
-    type: LoadBalancer
-
+      sessionAffinity: None
+      type: LoadBalancer
     ```
 
 2.  Edit this file and update the \[LOGINSERVER\] entry to match the name of your ACR login server.
